@@ -61,3 +61,7 @@ terraform init
 terraform plan
 terraform apply
 ```
+
+## Solution
+
+Find my solution here https://appservice-hello-world-sambt.azurewebsites.net/hello
