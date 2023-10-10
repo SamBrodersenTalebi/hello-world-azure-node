@@ -16,7 +16,7 @@ resource "azurerm_resource_group" "rg" {
 
 # Create an App Service Plan to define the underlying VMs for the App Services
 resource "azurerm_app_service_plan" "servicePlan" {
-  name                = "appserviceplan"
+  name                = "appserviceplan-${random_integer.ri.result}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   kind                = "Linux"  
@@ -29,7 +29,7 @@ resource "azurerm_app_service_plan" "servicePlan" {
 
 # Create App Service to host the Docker container
 resource "azurerm_app_service" "app_service" {
-  name                = "appservice-hello-world-sambt"
+  name                = "appservice-hello-world-sam-brodersen-${random_integer.ri.result}"
   location            = azurerm_resource_group.rg.location  
   resource_group_name = azurerm_resource_group.rg.name     
   app_service_plan_id = azurerm_app_service_plan.servicePlan.id
@@ -44,5 +44,6 @@ resource "azurerm_app_service" "app_service" {
     "DOCKER_REGISTRY_SERVER_URL"          = "https://index.docker.io" # Use dockerhub
     "DOCKER_CUSTOM_IMAGE_NAME"            = "DOCKER|sambrodersen1998/hello-world-app:amd64|3000" # Docker image with port mapping
     "DIAGNOSTICS_LOGGING_ENABLED"         = "1" # Enable logging
+    "WEBSITES_PORT"                       = "3000"  # Specifies the port the application uses
   }
 }
