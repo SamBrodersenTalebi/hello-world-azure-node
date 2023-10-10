@@ -7,6 +7,8 @@ This is a sample Node.js application that demonstrates the use of Express.js and
 - Node.js
 - Docker
 - Terraform
+- Azure account
+- Azure cli
 
 ## Installation
 
